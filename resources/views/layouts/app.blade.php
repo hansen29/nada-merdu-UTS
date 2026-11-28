@@ -6,29 +6,33 @@
     <title>@yield('title', 'Nada Merdu Studio') - Sistem Informasi Studio Musik</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-slate-950 text-slate-100 min-h-screen">
+<body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col">
     <nav class="bg-slate-900 border-b border-slate-800">
         <div class="max-w-6xl mx-auto px-4 py-4 flex flex-wrap items-center justify-between gap-4">
             <div>
                 <a href="{{ route('rooms.index') }}" class="text-xl font-bold text-amber-400 tracking-wide">
                     NADA MERDU STUDIO
                 </a>
-                <p class="text-xs text-slate-400">Master Data Ruangan & Alat Musik</p>
+                <p class="text-xs text-slate-400">Sistem Informasi Studio Musik (Ruangan, Alat Musik & Booking)</p>
             </div>
-            <div class="flex items-center gap-3 text-sm">
+            <div class="flex flex-wrap items-center gap-2 sm:gap-3 text-sm">
                 <a href="{{ route('rooms.index') }}"
-                   class="px-3 py-2 rounded-lg {{ request()->routeIs('rooms.*') ? 'bg-amber-500 text-slate-950 font-semibold' : 'bg-slate-800 text-slate-200 hover:bg-slate-700' }}">
+                   class="px-3 py-2 rounded-lg transition {{ request()->routeIs('rooms.*') ? 'bg-amber-500 text-slate-950 font-semibold' : 'bg-slate-800 text-slate-200 hover:bg-slate-700' }}">
                     Ruangan Studio
                 </a>
                 <a href="{{ route('instruments.index') }}"
-                   class="px-3 py-2 rounded-lg {{ request()->routeIs('instruments.*') ? 'bg-amber-500 text-slate-950 font-semibold' : 'bg-slate-800 text-slate-200 hover:bg-slate-700' }}">
+                   class="px-3 py-2 rounded-lg transition {{ request()->routeIs('instruments.*') ? 'bg-amber-500 text-slate-950 font-semibold' : 'bg-slate-800 text-slate-200 hover:bg-slate-700' }}">
                     Alat Musik
+                </a>
+                <a href="{{ route('bookings.index') }}"
+                   class="px-3 py-2 rounded-lg transition {{ request()->routeIs('bookings.*') ? 'bg-amber-500 text-slate-950 font-semibold' : 'bg-slate-800 text-slate-200 hover:bg-slate-700' }}">
+                    Booking Studio
                 </a>
             </div>
         </div>
     </nav>
 
-    <main class="max-w-6xl mx-auto px-4 py-8">
+    <main class="max-w-6xl w-full mx-auto px-4 py-8 flex-1">
         @if (session('success'))
             <div class="mb-6 rounded-lg bg-emerald-950 border border-emerald-700 px-4 py-3 text-emerald-300 text-sm">
                 {{ session('success') }}
@@ -48,5 +52,12 @@
 
         @yield('content')
     </main>
+
+    <footer class="bg-slate-900/70 border-t border-slate-800">
+        <div class="max-w-6xl mx-auto px-4 py-4 text-xs text-slate-400 flex flex-wrap items-center justify-between gap-2">
+            <span>Nada Merdu Studio &copy; {{ date('Y') }}</span>
+            <span>Laravel &bull; MySQL &bull; Blade Template</span>
+        </div>
+    </footer>
 </body>
 </html>

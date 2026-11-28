@@ -23,4 +23,9 @@ class Room extends Model
     {
         return $this->hasMany(Instrument::class);
     }
+
+    public function bookings(): HasMany
+    {
+    return $this->hasMany(Booking::class);
+    }
 }
